@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom LED Message Pillar | Personalized Light Decor</title>
+<meta name="description" content="Create a custom LED message pillar featuring your name, phrase, number, or logo. A compact personalized light for gifts, rooms, events, and businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Orbitron:wght@600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --night:#090A0F;
+  --night-2:#0E1018;
+  --night-3:#14172130;
+  --cloud:#F7F8FC;
+  --violet:#7C3AED;
+  --cyan:#22D3EE;
+  --pink:#FF4FD8;
+  --lime:#B7F34A;
+  --ink:#12141C;
+  --muted:#5B6070;
+  --muted-light:#9AA0B4;
+  --border-dark:rgba(255,255,255,.09);
+  --border-light:rgba(18,20,28,.10);
+  --grad-primary:linear-gradient(135deg,#7C3AED 0%,#22D3EE 100%);
+  --grad-warm:linear-gradient(135deg,#FF4FD8 0%,#7C3AED 100%);
+  --display:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--night);color:var(--cloud);line-height:1.6;overflow-x:hidden}
+img{max-width:100%}
+a{color:inherit}
+h1,h2,h3,.btn{font-family:var(--display)}
+h2{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:700;line-height:1.12;letter-spacing:-.01em}
+h3{font-weight:600}
+section{padding:clamp(64px,9vw,120px) 24px;position:relative}
+.wrap{max-width:1160px;margin:0 auto}
+.narrow{max-width:680px;margin:0 auto}
+.kicker{font-family:var(--display);font-weight:600;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:14px}
+.light .kicker{color:var(--violet)}
+.section-sub{color:var(--muted-light);max-width:560px;margin:16px auto 0;font-size:1.05rem}
+.light .section-sub{color:var(--muted)}
+.center{text-align:center}
+
+/* light sections */
+.light{background:var(--cloud);color:var(--ink)}
+
+/* ============ BUTTONS ============ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;border-radius:12px;font-weight:600;font-size:1rem;text-decoration:none;border:none;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;letter-spacing:.01em}
+.btn-primary{background:var(--grad-primary);color:#fff;box-shadow:0 6px 26px -8px rgba(124,58,237,.65)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px -8px rgba(34,211,238,.55)}
+.btn-ghost{background:transparent;color:var(--cloud);border:1px solid var(--border-dark)}
+.btn-ghost:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.light .btn-ghost{color:var(--ink);border-color:var(--border-light)}
+.light .btn-ghost:hover{border-color:var(--violet)}
+
+/* ============ SCROLL PROGRESS ============ */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-primary);z-index:1001}
+
+/* ============ NAV ============ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 24px;transition:background .35s ease,box-shadow .35s ease,padding .35s ease}
+nav.solid{background:rgba(9,10,15,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border-dark);padding:12px 24px}
+.nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.06em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-mark{width:14px;height:26px;border-radius:4px;background:var(--grad-primary);box-shadow:0 0 14px rgba(124,58,237,.8);flex:none}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--muted-light);position:relative;padding:4px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--grad-primary);border-radius:2px;transition:width .25s ease}
+.nav-links a:hover,.nav-links a.active{color:var(--cloud)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{padding:10px 20px;font-size:.9rem}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+#hero{min-height:100svh;display:flex;align-items:center;padding-top:110px;background:
+  radial-gradient(900px 500px at 75% 30%,rgba(124,58,237,.18),transparent 60%),
+  radial-gradient(700px 500px at 20% 80%,rgba(34,211,238,.10),transparent 60%),
+  var(--night)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;max-width:1160px;margin:0 auto;width:100%}
+.hero-copy h1{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.hero-copy h1 .w{display:inline-block;opacity:0;transform:translateY(26px);animation:wordUp .7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes wordUp{to{opacity:1;transform:none}}
+.hero-copy h1 .glow-word{background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-sub{margin:22px 0 32px;font-size:1.12rem;color:var(--muted-light);max-width:480px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-ribbon{margin-top:44px;display:flex;gap:22px;flex-wrap:wrap;font-size:.82rem;color:var(--muted-light)}
+.hero-ribbon span{display:flex;align-items:center;gap:7px}
+.hero-ribbon i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);flex:none}
+.hero-stage{display:flex;justify-content:center}
+
+/* ============ PILLAR COMPONENT ============ */
+.pillar{display:flex;flex-direction:column;align-items:center;--glow:#7C3AED}
+.pillar-body{position:relative;background:linear-gradient(180deg,#171a24 0%,#0c0d14 100%);border:1px solid var(--border-dark);border-radius:16px;padding:30px 26px;min-width:96px;display:flex;justify-content:center;box-shadow:0 0 70px -12px var(--glow),0 24px 50px -22px rgba(0,0,0,.9),inset 0 0 34px rgba(0,0,0,.55);transition:box-shadow .8s ease}
+.pillar-text{display:flex;flex-direction:column;align-items:center;font-weight:700;text-transform:uppercase;transition:opacity .45s ease}
+.pillar-text span{color:var(--glow);text-shadow:0 0 2px #fff,0 0 10px var(--glow),0 0 30px var(--glow);line-height:1.06;letter-spacing:.04em;transition:color .8s ease,text-shadow .8s ease}
+.pillar-text .sp{height:.5em}
+.pillar-base{width:78%;height:16px;background:linear-gradient(180deg,#1c1f2b,#12141d);border:1px solid var(--border-dark);border-top:none;border-radius:0 0 12px 12px}
+.pillar-shadow{margin-top:10px;width:120%;height:16px;border-radius:50%;background:radial-gradient(ellipse at center,var(--glow) 0%,transparent 70%);opacity:.22;filter:blur(6px)}
+.pillar.sm .pillar-body{padding:18px 16px;min-width:64px;border-radius:12px}
+.pillar.sm .pillar-base{height:11px}
+.pillar.lg .pillar-body{padding:42px 34px;min-width:130px}
+#hero .pillar-body{animation:heroFloat 7s ease-in-out infinite}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.pillar-text.fade{opacity:0}
+
+/* ============ TRUST STRIP ============ */
+#trust{padding:0 24px;background:var(--night)}
+.trust-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-dark);border:1px solid var(--border-dark);border-radius:var(--radius);overflow:hidden}
+.trust-item{background:var(--night-2);padding:26px 20px;text-align:center}
+.trust-item h3{font-size:.98rem;margin-bottom:4px}
+.trust-item p{font-size:.82rem;color:var(--muted-light)}
+@media(max-width:820px){.trust-inner{grid-template-columns:repeat(2,1fr)}}
+
+/* ============ EXPLAIN (3 views) ============ */
+.views{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.view-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius);padding:36px 24px 28px;text-align:center;transition:transform .3s ease,box-shadow .3s ease}
+.view-card:hover{transform:translateY(-6px) rotate(.4deg);box-shadow:0 20px 44px -18px rgba(18,20,28,.25)}
+.view-stage{height:250px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:22px;background:radial-gradient(320px 200px at 50% 70%,rgba(124,58,237,.10),transparent 70%),linear-gradient(180deg,#0d0f16,#141724);border-radius:12px;padding-bottom:24px}
+.view-card h3{font-size:1.05rem;margin-bottom:6px}
+.view-card p{font-size:.9rem;color:var(--muted)}
+.pillar.tilt{transform:rotateZ(-6deg) skewX(-3deg)}
+.scale-scene{display:flex;align-items:flex-end;gap:14px}
+.scale-obj{width:54px;height:74px;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#252a3a,#181c29);border:1px solid var(--border-dark);position:relative}
+.scale-obj::after{content:"BOOK";position:absolute;inset:auto 0 8px 0;text-align:center;font-size:.5rem;letter-spacing:.2em;color:#586080;font-family:var(--display)}
+.scale-tag{font-size:.68rem;color:#8891ab;font-family:var(--display);letter-spacing:.12em}
+@media(max-width:820px){.views{grid-template-columns:1fr}}
+
+/* ============ USE CASES ============ */
+.cases{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:56px}
+.case-card{background:var(--night-2);border:1px solid var(--border-dark);border-radius:var(--radius);padding:28px 22px;position:relative;overflow:hidden;transition:transform .3s ease,border-color .3s ease}
+.case-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-primary);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.case-card:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.4)}
+.case-card:hover::before{transform:scaleX(1)}
+.case-stage{height:150px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:20px}
+.case-card h3{font-size:1.02rem;margin-bottom:6px}
+.case-card p{font-size:.86rem;color:var(--muted-light)}
+@media(max-width:1000px){.cases{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cases{grid-template-columns:1fr}}
+
+/* ============ HOW IT WORKS ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;counter-reset:step}
+.step{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius);padding:30px 24px;position:relative}
+.step-num{font-family:var(--display);font-weight:700;font-size:2.4rem;background:var(--grad-primary);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.step h3{margin:14px 0 8px;font-size:1.05rem}
+.step p{font-size:.88rem;color:var(--muted)}
+.step::after{content:"";position:absolute;left:24px;bottom:0;height:3px;width:0;background:var(--grad-primary);border-radius:3px;transition:width .8s ease .2s}
+.step.visible::after{width:52px}
+@media(max-width:1000px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* ============ CUSTOMIZER ============ */
+#customizer{background:
+  radial-gradient(800px 500px at 80% 20%,rgba(255,79,216,.08),transparent 60%),
+  radial-gradient(700px 500px at 15% 90%,rgba(34,211,238,.08),transparent 60%),
+  var(--night)}
+.cz-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:56px}
+.cz-panel{display:flex;flex-direction:column;gap:28px}
+.cz-field label{display:block;font-family:var(--display);font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;color:var(--muted-light)}
+.cz-input-row{position:relative}
+#czInput{width:100%;background:var(--night-2);border:1px solid var(--border-dark);border-radius:12px;padding:16px 74px 16px 18px;font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--cloud);letter-spacing:.05em;outline:none;transition:border-color .2s,box-shadow .2s}
+#czInput:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.25)}
+#czCount{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.8rem;color:var(--muted-light);font-family:var(--display)}
+.cz-hint{font-size:.82rem;color:var(--muted-light);margin-top:8px}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:var(--night-2);border:1px solid var(--border-dark);color:var(--cloud);border-radius:10px;padding:10px 18px;font-size:.92rem;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+.chip:hover{transform:translateY(-2px)}
+.chip.on{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 18px -6px var(--cyan)}
+.swatches{display:flex;gap:14px;flex-wrap:wrap}
+.swatch{width:42px;height:42px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .2s,box-shadow .2s;position:relative}
+.swatch:hover{transform:scale(1.12)}
+.swatch.on{border-color:#fff;box-shadow:0 0 0 3px var(--night),0 0 0 5px #fff,0 0 22px var(--sw)}
+.cz-stage{display:flex;justify-content:center;align-items:flex-end;min-height:420px;background:radial-gradient(420px 300px at 50% 75%,rgba(124,58,237,.12),transparent 70%),linear-gradient(180deg,#0b0d14,#10121c);border:1px solid var(--border-dark);border-radius:20px;padding:44px 24px 40px}
+.cz-note{margin-top:14px;text-align:center;font-size:.8rem;color:var(--muted-light)}
+@media(max-width:900px){.cz-grid{grid-template-columns:1fr}.cz-stage{min-height:340px}}
+
+/* customizer fonts */
+.f-grotesk{font-family:'Space Grotesk',sans-serif}
+.f-inter{font-family:'Inter',sans-serif;font-weight:600}
+.f-orbitron{font-family:'Orbitron',sans-serif}
+.f-caveat{font-family:'Caveat',cursive;text-transform:none!important}
+
+/* ============ GALLERY ============ */
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:36px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+.g-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius);overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,opacity .3s ease}
+.g-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -18px rgba(18,20,28,.28)}
+.g-stage{height:210px;display:flex;align-items:flex-end;justify-content:center;background:linear-gradient(180deg,#0d0f16,#151827);padding-bottom:20px}
+.g-meta{padding:16px 18px}
+.g-meta h3{font-size:.95rem;color:var(--ink)}
+.g-meta p{font-size:.8rem;color:var(--muted);margin-top:3px}
+.g-tag{display:inline-block;margin-top:10px;font-size:.68rem;font-family:var(--display);font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);background:rgba(124,58,237,.1);padding:4px 10px;border-radius:20px}
+.g-card.hide{display:none}
+.light .chip{background:#fff;border-color:var(--border-light);color:var(--ink)}
+.light .chip.on{border-color:var(--violet);box-shadow:0 0 0 1px var(--violet)}
+.gallery-note{margin-top:32px;text-align:center;font-size:.84rem;color:var(--muted)}
+@media(max-width:1000px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+
+/* ============ SIGNUP BAND ============ */
+#signup{background:var(--grad-warm);color:#fff;padding:clamp(52px,7vw,80px) 24px}
+.signup-inner{max-width:760px;margin:0 auto;text-align:center}
+.signup-inner h2{color:#fff}
+.signup-inner p{margin:14px auto 30px;max-width:460px;opacity:.92}
+.signup-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.signup-form input{flex:1;padding:15px 18px;border-radius:12px;border:none;font-family:var(--body);font-size:.95rem;outline:none}
+.signup-form button{background:var(--night);color:#fff}
+.signup-form button:hover{box-shadow:0 10px 26px -8px rgba(0,0,0,.5)}
+@media(max-width:560px){.signup-form{flex-direction:column}}
+
+/* ============ FAQ ============ */
+.faq-list{max-width:760px;margin:52px auto 0}
+.faq-item{border:1px solid var(--border-light);border-radius:14px;margin-bottom:14px;background:#fff;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 24px;font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q .plus{font-size:1.3rem;color:var(--violet);transition:transform .3s ease;flex:none;line-height:1}
+.faq-item.open .plus{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-a p{padding:0 24px 22px;font-size:.92rem;color:var(--muted)}
+
+/* ============ FINAL CTA ============ */
+#final{background:
+  radial-gradient(700px 420px at 50% 30%,rgba(124,58,237,.22),transparent 65%),
+  var(--night);text-align:center}
+#final h2{font-size:clamp(2.2rem,6vw,4rem)}
+#final p{margin:18px auto 36px;color:var(--muted-light);max-width:440px}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:52px;align-items:start}
+.contact-info h3{font-size:1.2rem;margin-bottom:12px;color:var(--ink)}
+.contact-info p{font-size:.94rem;color:var(--muted);margin-bottom:22px}
+.contact-list{list-style:none;font-size:.92rem;color:var(--muted)}
+.contact-list li{padding:10px 0;border-bottom:1px solid var(--border-light);display:flex;gap:10px;align-items:baseline}
+.contact-list b{color:var(--ink);font-family:var(--display);font-weight:600;min-width:112px}
+form.lead{display:flex;flex-direction:column;gap:16px}
+form.lead input,form.lead textarea{padding:15px 18px;border-radius:12px;border:1px solid var(--border-light);background:#fff;font-family:var(--body);font-size:.95rem;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical}
+form.lead input:focus,form.lead textarea:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+.form-note{font-size:.78rem;color:var(--muted)}
+.success{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius);padding:44px 32px;text-align:center;display:none}
+.success h3{color:var(--ink);font-size:1.3rem;margin-bottom:10px}
+.success p{color:var(--muted);font-size:.94rem}
+.success .beam{width:14px;height:44px;margin:0 auto 18px;border-radius:5px;background:var(--grad-primary);box-shadow:0 0 22px rgba(124,58,237,.8)}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+
+/* ============ FOOTER ============ */
+footer{background:var(--night);border-top:1px solid var(--border-dark);padding:52px 24px 120px;font-size:.85rem;color:var(--muted-light)}
+.foot-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.foot-note{background:var(--night-2);border:1px solid var(--border-dark);border-radius:12px;padding:18px 20px;font-size:.78rem;line-height:1.7}
+.foot-note b{color:var(--cloud)}
+.foot-links{list-style:none;display:flex;gap:22px;flex-wrap:wrap;margin-top:16px}
+.foot-links a{text-decoration:none;color:var(--muted-light)}
+.foot-links a:hover{color:var(--cloud)}
+@media(max-width:820px){.foot-inner{grid-template-columns:1fr}}
+
+/* ============ MOBILE BOTTOM BAR ============ */
+#mobileBar{position:fixed;bottom:0;left:0;right:0;z-index:900;display:none;gap:1px;background:var(--border-dark);border-top:1px solid var(--border-dark);backdrop-filter:blur(10px)}
+#mobileBar a,#mobileBar button{flex:1;padding:16px 8px;background:rgba(9,10,15,.95);color:var(--cloud);text-align:center;text-decoration:none;font-family:var(--display);font-weight:600;font-size:.85rem;border:none;cursor:pointer}
+#mobileBar .bar-primary{background:var(--grad-primary);color:#fff}
+@media(max-width:820px){#mobileBar{display:flex}}
+
+/* ============ CHATBOT ============ */
+#chatBubble{position:fixed;bottom:24px;right:24px;z-index:950;width:60px;height:60px;border-radius:50%;background:var(--grad-primary);border:none;cursor:pointer;box-shadow:0 8px 30px -6px rgba(124,58,237,.8);display:flex;align-items:center;justify-content:center;transition:transform .25s ease;animation:bubblePulse 3.5s ease-in-out infinite}
+#chatBubble:hover{transform:scale(1.08)}
+@keyframes bubblePulse{0%,100%{box-shadow:0 8px 30px -6px rgba(124,58,237,.8)}50%{box-shadow:0 8px 38px -2px rgba(34,211,238,.75)}}
+#chatBubble svg{width:26px;height:26px;fill:#fff}
+#chatPanel{position:fixed;bottom:98px;right:24px;z-index:951;width:min(360px,calc(100vw - 32px));max-height:min(520px,70vh);background:var(--night-2);border:1px solid var(--border-dark);border-radius:18px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 70px -20px rgba(0,0,0,.8)}
+#chatPanel.open{display:flex}
+.chat-head{padding:16px 20px;background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(34,211,238,.15));border-bottom:1px solid var(--border-dark);display:flex;justify-content:space-between;align-items:center}
+.chat-head h3{font-size:.95rem}
+.chat-head p{font-size:.72rem;color:var(--muted-light)}
+.chat-close{background:none;border:none;color:var(--muted-light);font-size:1.4rem;cursor:pointer;line-height:1;padding:4px}
+.chat-close:hover{color:var(--cloud)}
+.chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:85%;padding:11px 15px;border-radius:14px;font-size:.87rem;line-height:1.5}
+.msg.bot{background:var(--night-3, #141721);background:#141721;border:1px solid var(--border-dark);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.user{background:var(--violet);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.chat-sugs{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 10px}
+.chat-sug{background:transparent;border:1px solid var(--border-dark);color:var(--muted-light);border-radius:20px;padding:7px 13px;font-size:.76rem;cursor:pointer;transition:border-color .2s,color .2s}
+.chat-sug:hover{border-color:var(--cyan);color:var(--cloud)}
+.chat-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--border-dark)}
+.chat-input input{flex:1;background:var(--night);border:1px solid var(--border-dark);border-radius:10px;padding:11px 14px;color:var(--cloud);font-family:var(--body);font-size:.88rem;outline:none}
+.chat-input input:focus{border-color:var(--violet)}
+.chat-input button{background:var(--grad-primary);border:none;border-radius:10px;padding:0 18px;color:#fff;font-family:var(--display);font-weight:600;cursor:pointer;font-size:.85rem}
+@media(max-width:820px){#chatBubble{bottom:78px}#chatPanel{bottom:150px}}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+
+/* ============ REDUCED MOTION ============ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#hero"><span class="logo-mark"></span>LED&nbsp;MESSAGE&nbsp;PILLAR</a>
+    <ul class="nav-links">
+      <li><a href="#customizer">Design Yours</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href="#customizer">Design Yours</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>
+        <span class="w" style="animation-delay:.05s">Make</span>
+        <span class="w" style="animation-delay:.15s">Your</span>
+        <span class="w" style="animation-delay:.25s">Words</span><br>
+        <span class="w glow-word" style="animation-delay:.4s">Stand&nbsp;Tall.</span>
+      </h1>
+      <p class="hero-sub">A compact custom LED pillar that turns names, phrases, logos, and memories into a glowing centerpiece.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#customizer">Design Yours</a>
+        <a class="btn btn-ghost" href="#gallery">See It Lit</a>
+      </div>
+      <div class="hero-ribbon">
+        <span><i></i>Custom Made</span>
+        <span><i></i>Preview Before Production</span>
+        <span><i></i>Easy Setup</span>
+        <span><i></i>Support When You Need It</span>
+      </div>
+    </div>
+    <div class="hero-stage">
+      <div class="pillar lg" id="heroPillar">
+        <div class="pillar-body"><div class="pillar-text" id="heroText"></div></div>
+        <div class="pillar-base"></div>
+        <div class="pillar-shadow"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div id="trust">
+  <div class="trust-inner reveal">
+    <div class="trust-item"><h3>Custom Made</h3><p>Built around your exact message</p></div>
+    <div class="trust-item"><h3>Preview First</h3><p>See your design before production</p></div>
+    <div class="trust-item"><h3>Easy Setup</h3><p>Place it, power it, done</p></div>
+    <div class="trust-item"><h3>Real Support</h3><p>Help before and after delivery</p></div>
+  </div>
+</div>
+
+<!-- ============ PRODUCT EXPLANATION ============ -->
+<section class="light" id="about">
+  <div class="wrap center">
+    <span class="kicker reveal">The Product</span>
+    <h2 class="reveal d1">Not a Wall Sign. A Light Object.</h2>
+    <p class="section-sub reveal d2">Designed to stand on a desk, shelf, table, or counter, the LED Message Pillar brings your words into the room from a completely new angle.</p>
+    <div class="views">
+      <div class="view-card reveal">
+        <div class="view-stage"><div class="pillar sm" data-pillar='{"text":"MAYA","color":"pink"}'></div></div>
+        <h3>Front View</h3><p>Your message, bold and vertical, readable across the room.</p>
+      </div>
+      <div class="view-card reveal d1">
+        <div class="view-stage"><div class="pillar sm tilt" data-pillar='{"text":"GLOW","color":"cyan"}'></div></div>
+        <h3>Seen From Any Angle</h3><p>A freestanding form — not flat, not stuck to a wall.</p>
+      </div>
+      <div class="view-card reveal d2">
+        <div class="view-stage">
+          <div class="scale-scene">
+            <div style="text-align:center"><div class="scale-obj"></div><div class="scale-tag">~9"</div></div>
+            <div style="text-align:center"><div class="pillar sm" data-pillar='{"text":"YOURS","color":"violet"}'></div><div class="scale-tag">~12"</div></div>
+          </div>
+        </div>
+        <h3>Real-World Scale</h3><p>About one foot tall — a small footprint with a big glow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USE CASES ============ -->
+<section id="uses">
+  <div class="wrap center">
+    <span class="kicker reveal">Use Cases</span>
+    <h2 class="reveal d1">One Pillar. A Lot of Reasons to Glow.</h2>
+    <div class="cases" id="caseGrid"></div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="light" id="how">
+  <div class="wrap center">
+    <span class="kicker reveal">The Process</span>
+    <h2 class="reveal d1">Your Idea to Your Door.</h2>
+    <p class="section-sub reveal d2">Type it. Preview it. We make it.</p>
+    <div class="steps" id="stepGrid"></div>
+  </div>
+</section>
+
+<!-- ============ CUSTOMIZER ============ -->
+<section id="customizer">
+  <div class="wrap center">
+    <span class="kicker reveal">Live Preview</span>
+    <h2 class="reveal d1">Designed by You.</h2>
+    <p class="section-sub reveal d2">Type your message and watch it light up. Change the font and glow until it feels like yours.</p>
+    <div class="cz-grid">
+      <div class="cz-panel reveal" style="text-align:left">
+        <div class="cz-field">
+          <label for="czInput">1 · Type Your Message</label>
+          <div class="cz-input-row">
+            <input id="czInput" type="text" maxlength="12" value="STAND TALL" autocomplete="off">
+            <span id="czCount">10 / 12</span>
+          </div>
+          <p class="cz-hint">Not sure what fits? Start typing and we will show you.</p>
+        </div>
+        <div class="cz-field">
+          <label>2 · Pick a Font</label>
+          <div class="chips" id="czFonts"></div>
+        </div>
+        <div class="cz-field">
+          <label>3 · Choose the Glow</label>
+          <div class="swatches" id="czColors"></div>
+        </div>
+        <div>
+          <button class="btn btn-primary" id="czCta">Request My Preview</button>
+          <p class="cz-hint" style="margin-top:12px">We will send your design preview before production begins.</p>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="cz-stage">
+          <div class="pillar lg" id="czPillar">
+            <div class="pillar-body"><div class="pillar-text" id="czText"></div></div>
+            <div class="pillar-base"></div>
+            <div class="pillar-shadow"></div>
+          </div>
+        </div>
+        <p class="cz-note">On-screen concept preview — your final proof is prepared by our design team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="light" id="gallery">
+  <div class="wrap center">
+    <span class="kicker reveal">Gallery</span>
+    <h2 class="reveal d1">Made Personal. Shown Proudly.</h2>
+    <p class="section-sub reveal d2">See what other people made, then make it yours.</p>
+    <div class="filter-row reveal" id="galleryFilters"></div>
+    <div class="gallery" id="galleryGrid"></div>
+    <p class="gallery-note reveal">Concept designs shown. Real customer photos will replace these after launch.</p>
+  </div>
+</section>
+
+<!-- ============ EMAIL SIGNUP ============ -->
+<section id="signup">
+  <div class="signup-inner reveal">
+    <h2>Be First to See It Lit.</h2>
+    <p>New designs, customer ideas, and launch offers — without the inbox clutter.</p>
+    <form class="signup-form" id="signupForm">
+      <input type="email" placeholder="your@email.com" required aria-label="Email address">
+      <button class="btn" type="submit">Keep Me Glowing</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="light" id="faq">
+  <div class="wrap center">
+    <span class="kicker reveal">Questions</span>
+    <h2 class="reveal d1">Good Questions. Straight Answers.</h2>
+    <div class="faq-list" id="faqList"></div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="final">
+  <div class="reveal">
+    <h2>What Will Yours Say?</h2>
+    <p>A name. A date. A phrase only two people understand. Make it glow.</p>
+    <a class="btn btn-primary" href="#customizer">Start Designing</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="light" id="contact">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker reveal">Contact</span>
+      <h2 class="reveal d1">Let's Make It Glow.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Questions, quotes, and bulk orders</h3>
+        <p>Tell us your idea — a name, a date, a logo — and we'll reply with a free design preview and a quote. Event and business bulk orders welcome.</p>
+        <ul class="contact-list">
+          <li><b>Design preview</b> Free with every inquiry</li>
+          <li><b>Bulk orders</b> Events, teams &amp; businesses</li>
+          <li><b>Support</b> Before and after delivery</li>
+        </ul>
+      </div>
+      <div class="reveal d1">
+        <form class="lead" id="leadForm">
+          <input type="text" name="name" placeholder="Your name" required aria-label="Your name">
+          <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+          <textarea name="message" id="leadMsg" rows="5" placeholder="What should your pillar say?" required aria-label="Your message"></textarea>
+          <button class="btn btn-primary" type="submit">Send My Idea</button>
+          <p class="form-note">Demo form — connect to your inbox (Netlify Forms, FormSubmit, or CRM) before launch.</p>
+        </form>
+        <div class="success" id="leadSuccess">
+          <div class="beam"></div>
+          <h3>Your idea is officially in motion.</h3>
+          <p>Watch for your free design preview — we'll be in touch soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-inner">
+    <div>
+      <a class="logo" href="#hero" style="color:var(--cloud)"><span class="logo-mark"></span>LED&nbsp;MESSAGE&nbsp;PILLAR</a>
+      <p style="margin-top:14px;max-width:380px">Make Your Words Stand Tall. A compact custom LED pillar for gifts, rooms, events, and businesses.</p>
+      <ul class="foot-links">
+        <li><a href="#customizer">Design Yours</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p style="margin-top:22px;font-size:.78rem">© 2026 LED Message Pillar. All rights reserved.</p>
+    </div>
+    <div class="foot-note">
+      <b>Before launch — confirm &amp; replace:</b><br>
+      Exact dimensions, weight &amp; materials · power method &amp; battery life · character/line limits · lighting modes · pricing · production &amp; shipping times · return policy · real product photos (gallery shows concept renders) · form &amp; email-list routing · final brand name &amp; legal checks. No unverified specs are claimed on this page.
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MOBILE BOTTOM BAR ============ -->
+<div id="mobileBar">
+  <a href="#gallery">Gallery</a>
+  <button type="button" id="barChat">Ask Us</button>
+  <a href="#customizer" class="bar-primary">Design Yours</a>
+</div>
+
+<!-- ============ CHATBOT ============ -->
+<button id="chatBubble" aria-label="Open chat">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.9 2 10.7c0 2.7 1.4 5.1 3.6 6.7-.1 1-.5 2.4-1.5 3.6 0 0 2.6-.3 4.6-1.7 1 .3 2.1.4 3.3.4 5.5 0 10-3.9 10-8.7S17.5 2 12 2z"/></svg>
+</button>
+<div id="chatPanel" role="dialog" aria-label="Chat assistant">
+  <div class="chat-head">
+    <div><h3>Pillar Assistant</h3><p>Ask about size, previews, or ordering</p></div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  <div class="chat-sugs" id="chatSugs"></div>
+  <div class="chat-input">
+    <input id="chatInput" type="text" placeholder="Type a question…" aria-label="Your question">
+    <button id="chatSend">Send</button>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= DATA ================= */
+var COLORS = {
+  violet:"#7C3AED", cyan:"#22D3EE", pink:"#FF4FD8", lime:"#B7F34A", ice:"#F7F8FC"
+};
+var FONTS = [
+  {id:"f-grotesk", label:"Modern"},
+  {id:"f-orbitron", label:"Arcade"},
+  {id:"f-inter", label:"Clean"},
+  {id:"f-caveat", label:"Script"}
+];
+var USE_CASES = [
+  {title:"Personal Gifts", copy:"Give them something nobody else has. Names, dates, coordinates, inside jokes.", text:"MAYA", color:"pink"},
+  {title:"Room & Gaming Decor", copy:"Make your space unmistakably yours. Desks, shelves, dorms, stream backgrounds.", text:"GAME ON", color:"violet"},
+  {title:"Events", copy:"Turn the table into the photo spot. Weddings, birthdays, senior nights.", text:"EST 2026", color:"cyan"},
+  {title:"Small Business", copy:"Get seen without taking up wall space. Counters, booths, reception desks.", text:"OPEN", color:"lime"}
+];
+var STEPS = [
+  {title:"Add Your Text", copy:"Type the name, phrase, number, or date you want to see in lights."},
+  {title:"Choose the Look", copy:"Pick a font and glow color that match your space and your style."},
+  {title:"Approve the Preview", copy:"We send a design preview before production begins — nothing is made until you say so."},
+  {title:"We Make & Ship It", copy:"Your pillar is built to order, packed carefully, and sent to your door."}
+];
+var GALLERY = [
+  {text:"MAYA", color:"pink", font:"f-grotesk", title:"A first big-kid room", cap:"Her name, her glow, her wall-free night light.", cat:"gifts"},
+  {text:"DAD", color:"lime", font:"f-grotesk", title:"Father's Day win", cap:"Three letters that beat another tie.", cat:"gifts"},
+  {text:"GAME ON", color:"violet", font:"f-orbitron", title:"Streaming desk", cap:"The centerpiece behind every clip.", cat:"rooms"},
+  {text:"LEVEL UP", color:"cyan", font:"f-orbitron", title:"Dorm setup", cap:"Small footprint, unmistakable vibe.", cat:"rooms"},
+  {text:"EST 2026", color:"cyan", font:"f-grotesk", title:"Sweetheart table", cap:"The date, standing tall at the reception.", cat:"events"},
+  {text:"CLASS OF 26", color:"pink", font:"f-grotesk", title:"Grad party photo spot", cap:"Everyone posed next to it. Everyone.", cat:"events"},
+  {text:"THE STUDIO", color:"violet", font:"f-inter", title:"Salon counter", cap:"Seen from the street, no wall required.", cat:"business"},
+  {text:"OPEN", color:"lime", font:"f-inter", title:"Pop-up shop", cap:"Packs flat-out easy, glows all day.", cat:"business"}
+];
+var CATS = [
+  {id:"all", label:"All"},
+  {id:"gifts", label:"Gifts"},
+  {id:"rooms", label:"Rooms & Gaming"},
+  {id:"events", label:"Events"},
+  {id:"business", label:"Business"}
+];
+var FAQS = [
+  {q:"How large is the pillar?", a:"The pillar is approximately one foot tall — sized for desks, shelves, tables, and counters. Exact height, width, depth, and weight will be published when the production model is finalized."},
+  {q:"How much text can I add?", a:"Short names, dates, and phrases fit best — the live preview above gives you a feel for it. Exact character and line limits are confirmed with your free design preview before anything is made."},
+  {q:"Will I see a preview before it's made?", a:"Yes. Every order includes a design preview, and production doesn't begin until you approve it. If something looks off, we fix it first."},
+  {q:"How is it powered?", a:"Power details (plug, USB, or battery) are being finalized for the production model and will be published before launch. Confirmed specs come with your design preview."},
+  {q:"How long do production and delivery take?", a:"Every pillar is made to order, so we quote a realistic production window plus shipping time with your preview — before you commit."},
+  {q:"Can I add a logo?", a:"Logo and artwork support is planned. Send your file with an inquiry and we'll confirm what's possible with your design preview."},
+  {q:"Can I return a customized pillar?", a:"Custom pieces are made just for you, so the preview-approval step exists to get it right first. Damaged or defective orders are covered — the full policy will be published before launch."}
+];
+var CHAT_SUGS = ["How big is it?", "Will I see a preview?", "How do I order?"];
+
+/* ================= HELPERS ================= */
+function el(tag, cls, html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Render stacked pillar text. size: base font px */
+function setPillarText(container, text, base){
+  base = base || 30;
+  var chars = String(text || "YOURS").toUpperCase().split("");
+  var n = chars.filter(function(c){return c!==" ";}).length || 1;
+  var size = Math.max(13, Math.min(base, Math.round(base * 6 / Math.max(n, 5))));
+  container.innerHTML = "";
+  chars.forEach(function(c){
+    if(c===" "){ container.appendChild(el("span","sp","")); }
+    else {
+      var s = el("span", null, esc(c));
+      s.style.fontSize = size + "px";
+      container.appendChild(s);
+    }
+  });
+}
+function makePillar(text, color, font, size){
+  var p = el("div", "pillar" + (size ? " " + size : ""));
+  p.style.setProperty("--glow", COLORS[color] || COLORS.violet);
+  var body = el("div","pillar-body");
+  var txt = el("div","pillar-text" + (font ? " " + font : ""));
+  setPillarText(txt, text, size==="sm" ? 20 : 30);
+  body.appendChild(txt);
+  p.appendChild(body);
+  p.appendChild(el("div","pillar-base"));
+  return p;
+}
+
+/* Hydrate static data-pillar placeholders */
+document.querySelectorAll("[data-pillar]").forEach(function(node){
+  var cfg = JSON.parse(node.getAttribute("data-pillar"));
+  node.style.setProperty("--glow", COLORS[cfg.color] || COLORS.violet);
+  var body = el("div","pillar-body");
+  var txt = el("div","pillar-text f-grotesk");
+  setPillarText(txt, cfg.text, 18);
+  body.appendChild(txt);
+  node.appendChild(body);
+  node.appendChild(el("div","pillar-base"));
+});
+
+/* ================= HERO ROTATION ================= */
+var heroText = document.getElementById("heroText");
+var heroPillar = document.getElementById("heroPillar");
+var HERO_DEMOS = [
+  {text:"YOURS", color:"violet"},
+  {text:"MAYA", color:"pink"},
+  {text:"GAME ON", color:"cyan"},
+  {text:"EST 2026", color:"lime"}
+];
+var heroIdx = 0;
+heroText.classList.add("f-grotesk");
+function heroShow(i){
+  var d = HERO_DEMOS[i];
+  heroPillar.style.setProperty("--glow", COLORS[d.color]);
+  setPillarText(heroText, d.text, 34);
+}
+heroShow(0);
+if(!reducedMotion){
+  setInterval(function(){
+    heroIdx = (heroIdx + 1) % HERO_DEMOS.length;
+    heroText.classList.add("fade");
+    setTimeout(function(){ heroShow(heroIdx); heroText.classList.remove("fade"); }, 450);
+  }, 4200);
+}
+
+/* ================= USE CASES ================= */
+var caseGrid = document.getElementById("caseGrid");
+USE_CASES.forEach(function(c, i){
+  var card = el("div","case-card reveal" + (i ? " d" + Math.min(i,3) : ""));
+  var stage = el("div","case-stage");
+  stage.appendChild(makePillar(c.text, c.color, "f-grotesk", "sm"));
+  card.appendChild(stage);
+  card.appendChild(el("h3", null, esc(c.title)));
+  card.appendChild(el("p", null, esc(c.copy)));
+  caseGrid.appendChild(card);
+});
+
+/* ================= STEPS ================= */
+var stepGrid = document.getElementById("stepGrid");
+STEPS.forEach(function(s, i){
+  var card = el("div","step reveal" + (i ? " d" + Math.min(i,3) : ""));
+  card.appendChild(el("div","step-num","0" + (i+1)));
+  card.appendChild(el("h3", null, esc(s.title)));
+  card.appendChild(el("p", null, esc(s.copy)));
+  stepGrid.appendChild(card);
+});
+
+/* ================= CUSTOMIZER ================= */
+var czInput = document.getElementById("czInput");
+var czCount = document.getElementById("czCount");
+var czText = document.getElementById("czText");
+var czPillar = document.getElementById("czPillar");
+var czState = {text:"STAND TALL", font:"f-grotesk", color:"violet"};
+
+var czFonts = document.getElementById("czFonts");
+FONTS.forEach(function(f, i){
+  var b = el("button","chip " + f.id + (i===0 ? " on" : ""), esc(f.label));
+  b.type = "button";
+  b.addEventListener("click", function(){
+    czFonts.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");
+    czState.font = f.id;
+    czRender();
+  });
+  czFonts.appendChild(b);
+});
+
+var czColors = document.getElementById("czColors");
+Object.keys(COLORS).forEach(function(key, i){
+  var s = el("button","swatch" + (i===0 ? " on" : ""));
+  s.type = "button";
+  s.style.background = COLORS[key];
+  s.style.setProperty("--sw", COLORS[key]);
+  s.setAttribute("aria-label", key + " glow");
+  s.addEventListener("click", function(){
+    czColors.querySelectorAll(".swatch").forEach(function(x){x.classList.remove("on");});
+    s.classList.add("on");
+    czState.color = key;
+    czRender();
+  });
+  czColors.appendChild(s);
+});
+
+function czRender(){
+  czPillar.style.setProperty("--glow", COLORS[czState.color]);
+  czText.className = "pillar-text " + czState.font;
+  setPillarText(czText, czState.text || "YOURS", 32);
+  czCount.textContent = (czState.text||"").length + " / 12";
+}
+czInput.addEventListener("input", function(){
+  czState.text = czInput.value;
+  czRender();
+});
+czRender();
+
+document.getElementById("czCta").addEventListener("click", function(){
+  var fontLabel = "Modern";
+  FONTS.forEach(function(f){ if(f.id===czState.font) fontLabel = f.label; });
+  var msg = document.getElementById("leadMsg");
+  msg.value = 'My pillar design — Message: "' + (czState.text || "YOURS") +
+    '" · Font: ' + fontLabel + ' · Glow: ' + czState.color +
+    '. Please send my free design preview and a quote.';
+  document.getElementById("contact").scrollIntoView({behavior: reducedMotion ? "auto" : "smooth"});
+});
+
+/* ================= GALLERY ================= */
+var galleryGrid = document.getElementById("galleryGrid");
+var galleryFilters = document.getElementById("galleryFilters");
+GALLERY.forEach(function(g){
+  var card = el("div","g-card reveal");
+  card.setAttribute("data-cat", g.cat);
+  var stage = el("div","g-stage");
+  stage.appendChild(makePillar(g.text, g.color, g.font, "sm"));
+  card.appendChild(stage);
+  var meta = el("div","g-meta");
+  meta.appendChild(el("h3", null, esc(g.title)));
+  meta.appendChild(el("p", null, esc(g.cap)));
+  var catLabel = g.cat;
+  CATS.forEach(function(c){ if(c.id===g.cat) catLabel = c.label; });
+  meta.appendChild(el("span","g-tag", esc(catLabel)));
+  card.appendChild(meta);
+  galleryGrid.appendChild(card);
+});
+CATS.forEach(function(c, i){
+  var b = el("button","chip" + (i===0 ? " on" : ""), esc(c.label));
+  b.type = "button";
+  b.addEventListener("click", function(){
+    galleryFilters.querySelectorAll(".chip").forEach(function(x){x.classList.remove("on");});
+    b.classList.add("on");
+    galleryGrid.querySelectorAll(".g-card").forEach(function(card){
+      var show = c.id === "all" || card.getAttribute("data-cat") === c.id;
+      card.classList.toggle("hide", !show);
+    });
+  });
+  galleryFilters.appendChild(b);
+});
+
+/* ================= FAQ ================= */
+var faqList = document.getElementById("faqList");
+FAQS.forEach(function(f){
+  var item = el("div","faq-item reveal");
+  var q = el("button","faq-q");
+  q.type = "button";
+  q.innerHTML = "<span>" + esc(f.q) + "</span><span class='plus'>+</span>";
+  var a = el("div","faq-a");
+  a.appendChild(el("p", null, esc(f.a)));
+  q.addEventListener("click", function(){
+    var open = item.classList.toggle("open");
+    a.style.maxHeight = open ? a.scrollHeight + "px" : "0";
+  });
+  item.appendChild(q);
+  item.appendChild(a);
+  faqList.appendChild(item);
+});
+
+/* ================= FORMS ================= */
+document.getElementById("leadForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  this.style.display = "none";
+  document.getElementById("leadSuccess").style.display = "block";
+});
+document.getElementById("signupForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var inner = document.querySelector(".signup-inner");
+  inner.innerHTML = "<h2>You're on the list.</h2><p>Watch for new designs and launch offers — no inbox clutter, promise.</p>";
+});
+
+/* ================= NAV / SCROLL ================= */
+var nav = document.getElementById("nav");
+var progress = document.getElementById("progress");
+window.addEventListener("scroll", function(){
+  nav.classList.toggle("solid", window.scrollY > 40);
+  var h = document.documentElement;
+  var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  progress.style.width = pct + "%";
+}, {passive:true});
+
+/* Scrollspy */
+var spyLinks = document.querySelectorAll(".nav-links a");
+var spyMap = {};
+spyLinks.forEach(function(a){ spyMap[a.getAttribute("href").slice(1)] = a; });
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting && spyMap[en.target.id]){
+      spyLinks.forEach(function(a){a.classList.remove("active");});
+      spyMap[en.target.id].classList.add("active");
+    }
+  });
+}, {rootMargin:"-45% 0px -50% 0px"});
+["customizer","gallery","how","faq","contact"].forEach(function(id){
+  var s = document.getElementById(id);
+  if(s) spy.observe(s);
+});
+
+/* Reveal on scroll */
+var revealObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(en){
+    if(en.isIntersecting){ en.target.classList.add("visible"); revealObs.unobserve(en.target); }
+  });
+}, {threshold:.12});
+document.querySelectorAll(".reveal, .step").forEach(function(n){ revealObs.observe(n); });
+
+/* ================= CHATBOT ================= */
+var chatPanel = document.getElementById("chatPanel");
+var chatBody = document.getElementById("chatBody");
+var chatInput = document.getElementById("chatInput");
+var chatSugs = document.getElementById("chatSugs");
+var chatSeeded = false;
+
+function chatToggle(open){
+  chatPanel.classList.toggle("open", open);
+  if(open){
+    if(!chatSeeded){
+      chatSeeded = true;
+      botSay("Hi! I'm the Pillar Assistant. Ask me about size, previews, ordering — or tap a question below.");
+      CHAT_SUGS.forEach(function(s){
+        var b = el("button","chat-sug", esc(s));
+        b.type = "button";
+        b.addEventListener("click", function(){ userAsk(s); });
+        chatSugs.appendChild(b);
+      });
+    }
+    chatInput.focus();
+  }
+}
+document.getElementById("chatBubble").addEventListener("click", function(){ chatToggle(!chatPanel.classList.contains("open")); });
+document.getElementById("chatClose").addEventListener("click", function(){ chatToggle(false); });
+document.getElementById("barChat").addEventListener("click", function(){ chatToggle(true); });
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") chatToggle(false); });
+
+function addMsg(cls, text){
+  var m = el("div","msg " + cls, esc(text));
+  chatBody.appendChild(m);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function botSay(t){ addMsg("bot", t); }
+function userAsk(t){
+  addMsg("user", t);
+  setTimeout(function(){ botSay(fallbackReply(t)); }, reducedMotion ? 0 : 500);
+}
+function sendChat(){
+  var v = chatInput.value.trim();
+  if(!v) return;
+  chatInput.value = "";
+  userAsk(v);
+}
+document.getElementById("chatSend").addEventListener("click", sendChat);
+chatInput.addEventListener("keydown", function(e){ if(e.key==="Enter") sendChat(); });
+
+/* Keyword fallback responder — honest answers only, no unverified specs */
+function fallbackReply(text){
+  var t = text.toLowerCase();
+  if(/(size|big|tall|large|dimension|height|fit on)/.test(t))
+    return "It's approximately one foot tall — made for desks, shelves, tables, and counters. Exact dimensions will be published once the production model is finalized.";
+  if(/(preview|proof|see it|before|approve|mockup)/.test(t))
+    return "Yes — you get a free design preview before production begins, and nothing is made until you approve it. Try the live preview in the Design Yours section!";
+  if(/(order|buy|purchase|how do i|get one|quote|start)/.test(t))
+    return "Head to the Design Yours section, type your message, and hit Request My Preview — it fills out the contact form for you. We'll reply with a free preview and quote.";
+  if(/(price|cost|much|expensive|\$)/.test(t))
+    return "Pricing depends on your design, so we include a quote with your free design preview. Send your idea through the contact form and we'll get you a number.";
+  if(/(text|character|letter|word|phrase|how much text|limit|line)/.test(t))
+    return "Short names, dates, and phrases look best — the live preview shows you what fits. Exact character limits are confirmed with your design preview.";
+  if(/(power|battery|plug|usb|charge|cord|electric)/.test(t))
+    return "Power details for the production model are being finalized and will be published before launch. Confirmed specs come with your design preview.";
+  if(/(color|rgb|change|glow|light mode)/.test(t))
+    return "You can pick your glow color in the live preview above. Available lighting modes for the final product are confirmed with your design preview.";
+  if(/(ship|deliver|arrive|production|long|when|time)/.test(t))
+    return "Every pillar is made to order. We quote a realistic production window plus shipping time with your preview — before you commit to anything.";
+  if(/(return|refund|damage|broken|exchange)/.test(t))
+    return "Damaged or defective orders are covered. Because each pillar is custom, the preview-approval step exists to get your design right before it's made.";
+  if(/(logo|image|upload|artwork|picture|business)/.test(t))
+    return "Logo and artwork support is planned — send your file with an inquiry and we'll confirm what's possible with your free design preview.";
+  if(/(gift|present|birthday|wedding|anniversary)/.test(t))
+    return "It makes a gift nobody else can copy — a name, a date, coordinates, an inside joke. Check the Gallery for ideas, then design yours.";
+  if(/(human|person|someone|talk|agent|help|contact)/.test(t))
+    return "Use the contact form at the bottom of the page and a real person will get back to you. Include your idea and we'll send a free preview too.";
+  return "I can help with size, previews, ordering, text limits, and shipping. What would you like to know? For anything else, the contact form reaches a real person.";
+}
+
+})();
+</script>
+</body>
+</html>

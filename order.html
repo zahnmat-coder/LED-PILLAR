@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Your LED Message Pillar</title>
+<meta name="description" content="Customize and order a personalized LED message pillar with secure Stripe checkout.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="ordering.css">
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="index.html"><i></i>LED MESSAGE PILLAR</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="admin.html">Seller Admin</a>
+      <a class="btn ghost" href="index.html#gallery">Gallery</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="hero">
+    <aside class="preview-card">
+      <div class="eyebrow">Live Preview</div>
+      <div class="preview-stage" id="livePreview">
+        <div class="preview-pillar">
+          <div class="preview-body">
+            <div class="preview-face preview-front"><span class="preview-text">ST. PETE PIER</span></div>
+            <div class="preview-face preview-side"><span class="preview-text">ST. PETE PIER</span></div>
+            <div class="preview-face preview-back"><span class="preview-text">ST. PETE PIER</span></div>
+            <div class="preview-face preview-left"><span class="preview-text">ST. PETE PIER</span></div>
+          </div>
+          <div class="base3d preview-base small" aria-hidden="true"><span class="b-face b-front"></span><span class="b-face b-right"></span><span class="b-face b-back"></span><span class="b-face b-left"></span></div>
+          <div class="base3d preview-base" aria-hidden="true"><span class="b-face b-front"></span><span class="b-face b-right"></span><span class="b-face b-back"></span><span class="b-face b-left"></span></div>
+          <div class="preview-shadow"></div>
+        </div>
+      </div>
+      <label class="rotate-control" for="orderRotate"><span>360 View</span><input id="orderRotate" type="range" min="-180" max="180" value="34" step="1"><b id="orderRotateLabel">Front + side</b></label>
+      <p class="proof-note">Preview is for visualization only. A manufacturing proof is prepared and approved before production.</p>
+    </aside>
+
+    <form id="orderForm">
+      <div class="eyebrow">Custom Order</div>
+      <h1>Build Your LED Pillar</h1>
+      <p class="sub">Choose the product details, upload artwork if needed, then pay through Stripe. The final total is recalculated securely on the server before checkout.</p>
+
+      <section class="panel">
+        <h2>Product Options</h2>
+        <div class="form-grid">
+          <label class="field"><span>Custom Text</span><input name="customText" maxlength="16" value="ST. PETE PIER" required></label>
+          <label class="field"><span>Quantity</span><input name="quantity" type="number" min="1" max="50" value="1" required></label>
+        </div>
+        <div class="option-grid" id="optionControls"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Artwork & Instructions</h2>
+        <div class="form-grid">
+          <label class="field"><span>Upload Logo or Artwork</span><input id="artwork" name="artwork" type="file" accept=".png,.jpg,.jpeg,.webp,.svg,.pdf,image/png,image/jpeg,image/webp,image/svg+xml,application/pdf"></label>
+          <label class="field"><span>Special Instructions</span><textarea name="specialInstructions" placeholder="Event date, exact placement notes, logo instructions, etc."></textarea></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Customer Info</h2>
+        <div class="form-grid">
+          <label class="field"><span>Name</span><input name="customerName" autocomplete="name" required></label>
+          <label class="field"><span>Email</span><input name="customerEmail" type="email" autocomplete="email" required></label>
+          <label class="field"><span>Phone</span><input name="customerPhone" autocomplete="tel" required></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Shipping Address</h2>
+        <div class="form-grid">
+          <label class="field"><span>Address Line 1</span><input name="shippingLine1" autocomplete="address-line1" required></label>
+          <label class="field"><span>Address Line 2</span><input name="shippingLine2" autocomplete="address-line2"></label>
+          <label class="field"><span>City</span><input name="shippingCity" autocomplete="address-level2" required></label>
+          <label class="field"><span>State</span><input name="shippingState" autocomplete="address-level1" required></label>
+          <label class="field"><span>Postal Code</span><input name="shippingPostalCode" autocomplete="postal-code" required></label>
+          <label class="field"><span>Country</span><input name="shippingCountry" autocomplete="country" value="US" required></label>
+        </div>
+      </section>
+
+      <section class="summary-card">
+        <h2>Order Review</h2>
+        <div class="review-preview" id="reviewPreview">
+          <div class="preview-pillar">
+            <div class="preview-body">
+              <div class="preview-face preview-front"><span class="preview-text">ST. PETE PIER</span></div>
+              <div class="preview-face preview-side"><span class="preview-text">ST. PETE PIER</span></div>
+              <div class="preview-face preview-back"><span class="preview-text">ST. PETE PIER</span></div>
+              <div class="preview-face preview-left"><span class="preview-text">ST. PETE PIER</span></div>
+            </div>
+            <div class="base3d preview-base small" aria-hidden="true"><span class="b-face b-front"></span><span class="b-face b-right"></span><span class="b-face b-back"></span><span class="b-face b-left"></span></div>
+            <div class="base3d preview-base" aria-hidden="true"><span class="b-face b-front"></span><span class="b-face b-right"></span><span class="b-face b-back"></span><span class="b-face b-left"></span></div>
+            <div class="preview-shadow"></div>
+          </div>
+        </div>
+        <p class="review-copy" id="reviewDesignSummary">ST. PETE PIER · Real pillar style · Extra large · Cyan blue · Front + side</p>
+        <h3>Price Breakdown</h3>
+        <ul class="price-list" id="priceRows"></ul>
+        <div class="total-row"><span id="qtySummary">Quantity: 1</span><strong id="totalSummary">$0.00</strong></div>
+        <p class="proof-note" id="serverNote"></p>
+        <button class="btn primary" type="submit">Create Order & Pay</button>
+        <p class="status" id="orderStatus" role="status"></p>
+      </section>
+    </form>
+  </section>
+</main>
+
+<script src="js/order-config.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>

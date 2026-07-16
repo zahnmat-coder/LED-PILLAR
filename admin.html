@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seller Admin | LED Message Pillar</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ordering.css">
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="/index.html"><i></i>LED MESSAGE PILLAR</a>
+    <div class="nav-links">
+      <a href="/order.html">Order Page</a>
+      <button class="btn ghost hidden" id="signOutBtn" type="button">Sign Out</button>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <section class="panel" id="loginPanel">
+    <div class="eyebrow">Protected Admin</div>
+    <h1>Seller Login</h1>
+    <p class="sub">Sign in with a Supabase user listed in seller_profiles or carrying an admin/seller app_metadata role.</p>
+    <form id="loginForm" class="form-grid">
+      <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="field"><span>Password</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="btn primary" type="submit">Sign In</button>
+      <p class="status" id="loginStatus" role="status"></p>
+    </form>
+  </section>
+
+  <section id="adminApp" class="hidden">
+    <div class="eyebrow">Seller Dashboard</div>
+    <h1>Orders</h1>
+    <div class="metric-grid">
+      <div class="metric"><span>Paid Revenue</span><b id="metricRevenue">$0</b></div>
+      <div class="metric"><span>Paid New</span><b id="metricNew">0</b></div>
+      <div class="metric"><span>Awaiting Payment</span><b id="metricAwaiting">0</b></div>
+      <div class="metric"><span>In Production</span><b id="metricProduction">0</b></div>
+    </div>
+
+    <div class="toolbar">
+      <input id="searchInput" placeholder="Search customer, email, order number, or custom text">
+      <select id="paymentFilter">
+        <option value="">All payments</option>
+        <option value="awaiting_payment">Awaiting payment</option>
+        <option value="paid">Paid</option>
+        <option value="failed">Failed</option>
+        <option value="expired">Expired</option>
+        <option value="refunded">Refunded</option>
+      </select>
+      <select id="productionFilter">
+        <option value="">All production</option>
+        <option value="not_started">Not started</option>
+        <option value="awaiting_proof">Awaiting proof</option>
+        <option value="awaiting_customer_approval">Awaiting customer approval</option>
+        <option value="in_production">In production</option>
+        <option value="shipped">Shipped</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <input id="dateFrom" type="date" aria-label="Date from">
+      <input id="dateTo" type="date" aria-label="Date to">
+      <button class="btn ghost" id="refreshBtn" type="button">Refresh</button>
+    </div>
+
+    <div class="admin-layout">
+      <div>
+        <table class="orders-table">
+          <thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+      <aside class="panel" id="orderDetail">
+        <h2>Select an order</h2>
+        <p class="sub">Order details, artwork, preview, build sheet, and status controls appear here.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/js/supabase-config.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

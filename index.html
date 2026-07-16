@@ -62,17 +62,15 @@ section{padding:clamp(64px,9vw,120px) 24px;position:relative;scroll-margin-top:8
 .light .btn-ghost{color:var(--ink);border-color:var(--border-light)}
 .light .btn-ghost:hover{border-color:var(--violet)}
 
-/* ============ HEADER (promo + nav) ============ */
+/* ============ HEADER ============ */
 #progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--grad-primary);z-index:1101}
 header{position:fixed;top:0;left:0;right:0;z-index:1000}
-#promo{background:var(--grad-warm);color:#fff;text-align:center;font-size:.8rem;font-weight:500;padding:8px 16px;letter-spacing:.02em;max-height:60px;overflow:hidden;transition:max-height .35s ease,padding .35s ease}
-#promo a{font-weight:600;text-decoration:underline}
-header.solid #promo{max-height:0;padding:0}
-nav{padding:16px 24px;transition:background .35s ease,box-shadow .35s ease,padding .35s ease}
-header.solid nav{background:rgba(9,10,15,.93);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border-dark);padding:12px 24px}
+nav{padding:18px 24px;background:rgba(9,10,15,.96);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border-dark)}
+header.solid nav{padding:14px 24px}
 .nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-family:var(--display);font-weight:700;font-size:1.12rem;letter-spacing:.06em;text-decoration:none;display:flex;align-items:center;gap:10px}
-.logo-mark{width:14px;height:26px;border-radius:4px;background:var(--grad-primary);box-shadow:0 0 14px rgba(124,58,237,.8);flex:none}
+.logo{display:inline-flex;align-items:center;text-decoration:none}
+    .logo img{width:178px;max-width:48vw;height:auto;display:block}
+.logo-mark{display:none}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--muted-light);position:relative;padding:4px 0;transition:color .2s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--grad-primary);border-radius:2px;transition:width .25s ease}
@@ -160,7 +158,7 @@ header.solid nav{background:rgba(9,10,15,.93);backdrop-filter:blur(12px);box-sha
 #builder{background:
   radial-gradient(800px 500px at 85% 10%,rgba(255,79,216,.07),transparent 60%),
   radial-gradient(700px 500px at 10% 95%,rgba(34,211,238,.07),transparent 60%),
-  var(--night)}
+  var(--night);padding-top:130px}
 .builder-head{text-align:center;margin-bottom:44px}
 /* product LEFT · controls RIGHT */
 .builder-grid{display:grid;grid-template-columns:minmax(360px,500px) minmax(0,1fr);gap:44px;align-items:start}
@@ -638,70 +636,12 @@ footer{background:var(--night);border-top:1px solid var(--border-dark);padding:5
 
 <!-- ============ HEADER ============ -->
 <header id="header">
-  <div id="promo">Founding-customer launch list is open — <a href="#signup">join for early designs &amp; launch offers</a></div>
   <nav>
     <div class="nav-inner">
-      <a class="logo" href="#hero"><span class="logo-mark"></span>LED&nbsp;MESSAGE&nbsp;PILLAR</a>
-      <ul class="nav-links">
-        <li><a href="#builder">Design Yours</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a class="btn btn-primary nav-cta" href="order.html">Order Yours</a>
+      <a class="logo" href="#builder" aria-label="Vibe Lighting home"><img src="images/vibe-lighting-logo.png" alt="Vibe Lighting"></a>
     </div>
   </nav>
 </header>
-
-<!-- ============ HERO ============ -->
-<section id="hero">
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="neon-script hero-eyebrow">your words, lit</span>
-      <h1>
-        <span class="w" style="animation-delay:.05s">Make</span>
-        <span class="w" style="animation-delay:.15s">Your</span>
-        <span class="w" style="animation-delay:.25s">Words</span><br>
-        <span class="w neon-word" style="animation-delay:.4s">Stand&nbsp;Tall.</span>
-      </h1>
-      <p class="hero-sub">A compact backlit pillar with a gray frame, square base, and glowing vertical panels. Add your text, pick the glow, and see the front-and-side preview update live.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="order.html">Customize &amp; Order</a>
-        <a class="btn btn-ghost" href="#gallery">See It Lit</a>
-      </div>
-      <div class="hero-ribbon">
-        <span><i></i>Gray Frame</span>
-        <span><i></i>Two-Panel Look</span>
-        <span><i></i>Glow-Only Option</span>
-        <span><i></i>Proof Before Production</span>
-      </div>
-    </div>
-    <div class="hero-photo reveal">
-      <img src="images/real-pillar-blue-kitchen.png" alt="Real LED Message Pillar glowing blue on a kitchen counter">
-      <span class="photo-chip">Real product photo</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Make Your Words Stand Tall<b>✦</b>Gray Frame<b>✦</b>Front + Side Glow<b>✦</b>Small Footprint, Big Light<b>✦</b>One of One<b>✦</b>What Will Yours Say?<b>✦</b></span>
-    <span>Make Your Words Stand Tall<b>✦</b>Gray Frame<b>✦</b>Front + Side Glow<b>✦</b>Small Footprint, Big Light<b>✦</b>One of One<b>✦</b>What Will Yours Say?<b>✦</b></span>
-  </div>
-</div>
-
-<!-- ============ TRUST STRIP ============ -->
-<div id="trust">
-  <div class="trust-inner reveal">
-    <div class="trust-item"><h3>Vertical Message</h3><p>Text runs tall on the glowing panels</p></div>
-    <div class="trust-item"><h3>Front + Side Glow</h3><p>Two visible panels light the room</p></div>
-    <div class="trust-item"><h3>Square Base</h3><p>Made for desks, shelves, and tables</p></div>
-    <div class="trust-item"><h3>Preview First</h3><p>Free design proof before production</p></div>
-  </div>
-</div>
 
 <!-- ============ BUILDER ============ -->
 <section id="builder">
@@ -717,12 +657,8 @@ footer{background:var(--night);border-top:1px solid var(--border-dark);padding:5
       <div class="preview-col reveal" id="previewWrap">
         <div class="stage scene-studio" id="stage">
           <div class="decor decor-studio"><div class="d-softbox"></div><div class="d-reflect"></div></div>
-          <div class="decor decor-desk"><div class="d-poster"></div><div class="d-shelfline"></div><div class="d-ledstrip"></div><div class="d-monitor"><i class="scr"></i></div><div class="d-speaker"></div><div class="d-mousepad"></div><div class="d-keyboard"></div><div class="d-mouse"></div><div class="d-mug"></div><div class="d-plant"><i></i><i></i><i></i></div><div class="g-pool gp-desk"></div></div>
-          <div class="decor decor-bedroom"><div class="d-rug"></div><div class="d-frame"></div><div class="d-bed"><i></i></div><div class="d-beam"></div><div class="d-curtain cl"></div><div class="d-window"><i class="bar-v"></i><i class="bar-h"></i></div><div class="d-curtain cr"></div><div class="d-moon"></div><div class="d-stand"><i></i></div><div class="d-clock"></div><div class="d-books"></div><div class="d-plant d-plant2"><i></i><i></i><i></i></div><div class="g-pool gp-bed"></div></div>
-          <div class="decor decor-event"><div class="d-swag"></div><div class="d-bokeh"></div><div class="d-lights"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="d-lights d-lights2"><i></i><i></i><i></i><i></i><i></i></div><div class="d-confetti"></div><div class="d-gift"></div><div class="d-vase"><i></i><i></i><i></i></div><div class="d-flute f1"></div><div class="d-flute f2"></div><div class="d-candle c1"><i></i></div><div class="d-candle c2"><i></i></div><div class="d-event-card"></div><div class="g-pool gp-event"></div></div>
           <span class="dust"></span><span class="dust"></span><span class="dust"></span><span class="dust"></span><span class="dust"></span>
           <div class="stage-toolbar">
-            <div class="scene-chips" id="sceneChips"></div>
             <button id="lightToggle" type="button"><i></i><span>Lights On</span></button>
           </div>
           <div class="prod" id="czPillar">
@@ -817,59 +753,6 @@ footer{background:var(--night);border-top:1px solid var(--border-dark);padding:5
   </div>
 </section>
 
-<!-- ============ STATS ============ -->
-<div id="stats">
-  <div class="stats-inner reveal">
-    <div class="stat"><div class="stat-num" data-count="8">0</div><div class="stat-label">Font Styles</div></div>
-    <div class="stat"><div class="stat-num" data-count="10">0</div><div class="stat-label">Glow Colors</div></div>
-    <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">Panel Options</div></div>
-    <div class="stat"><div class="stat-num">1/1</div><div class="stat-label">Every Design Unique</div></div>
-  </div>
-</div>
-
-<!-- ============ PRODUCT EXPLANATION ============ -->
-<section class="light" id="about">
-  <div class="wrap center">
-    <span class="kicker reveal">The Product</span>
-    <h2 class="reveal d1">Not a Wall Sign. A Light Object.</h2>
-    <p class="section-sub reveal d2">A freestanding backlit pillar — your words printed vertically on softly glowing acrylic panels, framed in gray, and set on a compact square base.</p>
-    <div class="views">
-      <div class="view-card reveal">
-        <div class="view-img"><img src="images/real-pillar-blue-window.png" alt="Real blue glowing LED pillar on a console table"></div>
-        <h3>The Whole Panel Glows</h3><p>No thin tubes — each acrylic panel lights up as one clean color field.</p>
-      </div>
-      <div class="view-card reveal d1">
-        <div class="view-img"><img src="images/real-pillar-warm-console.png" alt="Real warm white LED pillar showing front and side text"></div>
-        <h3>Front + Side Text</h3><p>The message repeats on the two visible faces, so it reads from an angle on desks and nightstands.</p>
-      </div>
-      <div class="view-card reveal d2">
-        <div class="view-img"><img src="images/real-pillar-warm-close.png" alt="Close view of real LED pillar on square base"></div>
-        <h3>Compact Square Base</h3><p>About one foot tall with a slim footprint, built to sit on shelves, counters, and bedside tables.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ USE CASES ============ -->
-<section id="uses">
-  <div class="wrap center">
-    <span class="kicker reveal">Use Cases</span>
-    <h2 class="reveal d1">One Pillar. A Lot of Reasons to Glow.</h2>
-    <p class="section-sub reveal d2">Click a card to load a starting design into the studio.</p>
-    <div class="cases" id="caseGrid"></div>
-  </div>
-</section>
-
-<!-- ============ HOW IT WORKS ============ -->
-<section class="light" id="how">
-  <div class="wrap center">
-    <span class="kicker reveal">The Process</span>
-    <h2 class="reveal d1">Your Idea to Your Door.</h2>
-    <p class="section-sub reveal d2">Type it. Preview it. We make it.</p>
-    <div class="steps" id="stepGrid"></div>
-  </div>
-</section>
-
 <!-- ============ GALLERY ============ -->
 <section class="light" id="gallery" style="background:#EFF1F8">
   <div class="wrap center">
@@ -882,120 +765,8 @@ footer{background:var(--night);border-top:1px solid var(--border-dark);padding:5
   </div>
 </section>
 
-<!-- ============ EMAIL SIGNUP ============ -->
-<section id="signup">
-  <div class="signup-inner reveal">
-    <h2>Be First to See It Lit.</h2>
-    <p>New designs, customer ideas, and launch offers — without the inbox clutter.</p>
-    <form class="signup-form" id="signupForm">
-      <input type="email" placeholder="your@email.com" required aria-label="Email address">
-      <button class="btn" type="submit">Keep Me Glowing</button>
-    </form>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="light" id="faq">
-  <div class="wrap center">
-    <span class="kicker reveal">Questions</span>
-    <h2 class="reveal d1">Good Questions. Straight Answers.</h2>
-    <div class="faq-list" id="faqList"></div>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<section id="final">
-  <div class="reveal">
-    <span class="neon-script" style="font-size:1.4rem;display:block;margin-bottom:12px;transform:rotate(-2deg)">go on, say it in lights</span>
-    <h2>What Will Yours Say?</h2>
-    <p>A name. A date. A phrase only two people understand. Make it glow.</p>
-    <a class="btn btn-primary" href="order.html">Start Order</a>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section class="light" id="contact">
-  <div class="wrap">
-    <div class="center">
-      <span class="kicker reveal">Contact</span>
-      <h2 class="reveal d1">Let's Make It Glow.</h2>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <h3>Questions, quotes, and bulk orders</h3>
-        <p>Tell us your idea — a name, a date, a logo — and we'll reply with a free design preview and a quote. Event and business bulk orders welcome.</p>
-        <ul class="contact-list">
-          <li><b>Design preview</b> Free with every inquiry</li>
-          <li><b>Bulk orders</b> Events, teams &amp; businesses</li>
-          <li><b>Support</b> Before and after delivery</li>
-        </ul>
-      </div>
-      <div class="reveal d1">
-        <form class="lead" id="leadForm">
-          <input type="text" name="name" placeholder="Your name" required aria-label="Your name">
-          <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
-          <textarea name="message" id="leadMsg" rows="5" placeholder="What should your pillar say?" required aria-label="Your message"></textarea>
-          <button class="btn btn-primary" type="submit">Send My Idea</button>
-          <p class="form-note">Demo form — connect to your inbox (Netlify Forms, FormSubmit, or CRM) before launch.</p>
-        </form>
-        <div class="success" id="leadSuccess">
-          <div class="beam"></div>
-          <h3>Your idea is officially in motion.</h3>
-          <p>Watch for your free design preview — we'll be in touch soon.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="foot-inner">
-    <div>
-      <a class="logo" href="#hero" style="color:var(--cloud)"><span class="logo-mark"></span>LED&nbsp;MESSAGE&nbsp;PILLAR</a>
-      <p style="margin-top:14px;max-width:380px">Make Your Words Stand Tall. A compact custom LED pillar for gifts, rooms, events, and businesses.</p>
-      <ul class="foot-links">
-        <li><a href="#builder">Design Yours</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <p style="margin-top:22px;font-size:.78rem">© 2026 LED Message Pillar. All rights reserved.</p>
-    </div>
-    <div class="foot-note">
-      <b>Before launch — confirm &amp; replace:</b><br>
-      Exact dimensions, weight &amp; materials · power method &amp; battery life · character/line limits · lighting modes &amp; final color set · text-panel configurations · pricing · production &amp; shipping times · return policy · photography · form &amp; email-list routing · final brand name &amp; legal checks. No unverified specs are claimed on this page.
-    </div>
-  </div>
-</footer>
-
-<!-- ============ MOBILE BOTTOM BAR ============ -->
-<div id="mobileBar">
-  <a href="#gallery">Gallery</a>
-  <button type="button" id="barChat">Ask Us</button>
-  <a href="order.html" class="bar-primary">Order</a>
-</div>
-
 <!-- toast -->
 <div id="toast" role="status"></div>
-
-<!-- ============ CHATBOT ============ -->
-<button id="chatBubble" aria-label="Open chat">
-  <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.9 2 10.7c0 2.7 1.4 5.1 3.6 6.7-.1 1-.5 2.4-1.5 3.6 0 0 2.6-.3 4.6-1.7 1 .3 2.1.4 3.3.4 5.5 0 10-3.9 10-8.7S17.5 2 12 2z"/></svg>
-</button>
-<div id="chatPanel" role="dialog" aria-label="Chat assistant">
-  <div class="chat-head">
-    <div><h3>Pillar Assistant</h3><p>Ask about size, previews, or ordering</p></div>
-    <button class="chat-close" id="chatClose" aria-label="Close chat">&times;</button>
-  </div>
-  <div class="chat-body" id="chatBody" aria-live="polite"></div>
-  <div class="chat-sugs" id="chatSugs"></div>
-  <div class="chat-input">
-    <input id="chatInput" type="text" placeholder="Type a question…" aria-label="Your question">
-    <button id="chatSend">Send</button>
-  </div>
-</div>
 
 <script>
 (function(){
@@ -1037,10 +808,7 @@ var FACES = [
 function faceLabel(id){ for(var i=0;i<FACES.length;i++){ if(FACES[i].id===id) return FACES[i].label; } return id; }
 
 var SCENES = [
-  {id:"scene-studio",  label:"Studio",  sub:"Gray product shot", cap:"Studio product view"},
-  {id:"scene-desk",    label:"Desk",    sub:"TV / setup glow", cap:"Desk and console setup"},
-  {id:"scene-bedroom", label:"Bedroom", sub:"Shelf at night", cap:"Bedroom shelf at night"},
-  {id:"scene-event",   label:"Event",   sub:"Table display", cap:"Event table display"}
+  {id:"scene-studio",  label:"Studio",  sub:"Gray product shot", cap:"Studio product view"}
 ];
 
 var IDEAS = ["MAYA","EST 2026","GAME ON","BE KIND","DREAM BIG","DAD"];
@@ -1059,18 +827,6 @@ var SHUFFLE_POOL = [
   {text:"CLUTCH", font:"f-inter", color:"cyan"}
 ];
 
-var USE_CASES = [
-  {title:"Personal Gifts", copy:"A real tabletop pillar with a custom place, name, date, or phrase.", img:"images/real-pillar-warm-close.png", alt:"Real warm white custom LED pillar close up", text:"DREAM BIG", color:"warm", font:"f-grotesk"},
-  {title:"Room & Gaming Decor", copy:"Blue room glow for desks, consoles, shelves, dorms, and setups.", img:"images/real-pillar-blue-console.png", alt:"Real blue LED pillar beside a television", text:"FOCUS", color:"cyan", font:"f-grotesk"},
-  {title:"Events", copy:"A freestanding centerpiece for tables, parties, teams, and photo spots.", img:"images/real-pillar-green-window.png", alt:"Real green LED pillar on a console table", text:"GOOD VIBES", color:"green", font:"f-grotesk"},
-  {title:"Small Business", copy:"A compact branded display for counters, booths, bars, and reception desks.", img:"images/real-pillar-blue-kitchen.png", alt:"Real blue LED pillar on a kitchen counter", text:"ST. PETE PIER", color:"cyan", font:"f-grotesk"}
-];
-var STEPS = [
-  {title:"Add Your Text", copy:"Type the name, phrase, number, or date you want to see printed vertically."},
-  {title:"Choose the Look", copy:"Pick a font, glow color, and text-panel layout in the live design studio."},
-  {title:"Approve the Preview", copy:"We send a free design preview before production begins — nothing is made until you say so."},
-  {title:"We Make & Ship It", copy:"Your pillar is built to order, packed carefully, and sent to your door."}
-];
 var GALLERY = [
   {img:"images/real-pillar-blue-window.png", alt:"Real blue ST PETE PIER LED pillar beside a window", text:"ST. PETE PIER", color:"cyan", font:"f-grotesk", title:"Blue window glow", cap:"The real pillar profile: gray frame, blue panel, front + side text.", cat:"rooms"},
   {img:"images/real-pillar-blue-console.png", alt:"Real blue ST PETE PIER LED pillar on a console", text:"ST. PETE PIER", color:"cyan", font:"f-grotesk", title:"Console display", cap:"A tall freestanding light beside a TV and room decor.", cat:"rooms"},
@@ -1086,39 +842,9 @@ var CATS = [
   {id:"events", label:"Events"},
   {id:"business", label:"Business"}
 ];
-var FAQS = [
-  {q:"How large is the pillar?", a:"The pillar is approximately one foot tall — sized for desks, shelves, tables, and counters. Exact height, width, depth, and weight will be published when the production model is finalized."},
-  {q:"How much text can I add?", a:"Short names, dates, and phrases fit best — the live design studio gives you a feel for it. Exact character and line limits are confirmed with your free design preview before anything is made."},
-  {q:"Will I see a preview before it's made?", a:"Yes. Every order includes a free design preview, and production doesn't begin until you approve it. If something looks off, we fix it first."},
-  {q:"Can it show my message on more than one side?", a:"Yes — the signature look repeats your message on the front and side panels. Choose front only, front + side, or an all-panels proof in the design studio."},
-  {q:"Can I get it without text?", a:"Absolutely — leave the message blank and it works as a pure color-glow lamp. You can see that look in the gallery."},
-  {q:"How is it powered?", a:"Power details (plug, USB, or battery) are being finalized for the production model and will be published before launch. Confirmed specs come with your design preview."},
-  {q:"How long do production and delivery take?", a:"Every pillar is made to order, so we quote a realistic production window plus shipping time with your preview — before you commit."},
-  {q:"Can I add a logo?", a:"Logo and artwork support is planned. Send your file with an inquiry and we'll confirm what's possible with your design preview."},
-  {q:"Can I return a customized pillar?", a:"Custom pieces are made just for you, so the preview-approval step exists to get it right first. Damaged or defective orders are covered — the full policy will be published before launch."}
-];
-var CHAT_SUGS = ["How big is it?", "Will I see a preview?", "How do I order?"];
-
 /* ================= HELPERS ================= */
 function el(tag, cls, html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
 function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
-function sceneClass(color){
-  if(color === "warm" || color === "gold" || color === "orange") return "scene-warm";
-  if(color === "blue" || color === "cyan" || color === "ice") return "scene-blue";
-  if(color === "purple" || color === "pink") return "scene-purple";
-  if(color === "green") return "scene-green";
-  if(color === "red") return "scene-red";
-  return "scene-warm";
-}
-function pillarMockup(text, color){
-  var copy = (text || "").trim().toUpperCase();
-  var safe = esc(copy);
-  return "<div class='mock-scene " + sceneClass(color) + "' style='--panel:" + esc(hexOf(color)) + "' aria-label='" + esc(copy ? copy + " LED pillar" : "Blank glow pillar") + "'>" +
-    "<div class='mock-pillar'><div class='mock-body'>" +
-    "<div class='mock-face mock-front'><span class='mock-text'>" + safe + "</span></div>" +
-    "<div class='mock-face mock-side'><span class='mock-text'>" + safe + "</span></div>" +
-    "</div><div class='mock-base'></div><div class='mock-base small'></div><div class='mock-shadow'></div></div></div>";
-}
 var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 function smoothScrollTo(node, block){
   node.scrollIntoView({behavior: reducedMotion ? "auto" : "smooth", block: block || "start"});
@@ -1345,20 +1071,7 @@ FACES.forEach(function(f){
   czFaces.appendChild(o);
 });
 
-/* scenes + light toggle */
-var sceneChips = document.getElementById("sceneChips");
-SCENES.forEach(function(s, i){
-  var b = el("button","scene-chip" + (i===0 ? " on" : ""), "<strong>" + esc(s.label) + "</strong><small>" + esc(s.sub) + "</small>");
-  b.type = "button";
-  b.addEventListener("click", function(){
-    sceneChips.querySelectorAll(".scene-chip").forEach(function(x){x.classList.remove("on");});
-    b.classList.add("on");
-    stage.className = "stage " + s.id + (cz.lights ? "" : " lights-off");
-    cz.scene = s.id;
-    updateCaption(s.cap);
-  });
-  sceneChips.appendChild(b);
-});
+/* light toggle */
 var lightToggle = document.getElementById("lightToggle");
 lightToggle.addEventListener("click", function(){
   cz.lights = !cz.lights;
@@ -1435,53 +1148,6 @@ document.getElementById("czCta").addEventListener("click", requestPreview);
 czRender();
 setActiveStep(1);
 
-/* ================= STATS COUNT-UP ================= */
-function countUp(node, target){
-  if(reducedMotion){ node.textContent = target; return; }
-  var start = null;
-  function tick(ts){
-    if(!start) start = ts;
-    var p = Math.min((ts - start) / 900, 1);
-    node.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-    if(p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-var statObs = new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if(en.isIntersecting){
-      en.target.querySelectorAll("[data-count]").forEach(function(n){
-        countUp(n, Number(n.getAttribute("data-count")));
-      });
-      statObs.unobserve(en.target);
-    }
-  });
-}, {threshold:.4});
-var statsInner = document.querySelector(".stats-inner");
-if(statsInner) statObs.observe(statsInner);
-
-/* ================= USE CASES ================= */
-var caseGrid = document.getElementById("caseGrid");
-USE_CASES.forEach(function(c, i){
-  var card = el("div","case-card reveal" + (i ? " d" + Math.min(i,3) : ""));
-  card.innerHTML = "<div class='case-img'><img loading='lazy' src='" + esc(c.img) + "' alt='" + esc(c.alt) + "'></div>" +
-    "<h3>" + esc(c.title) + "</h3><p>" + esc(c.copy) + "</p><span class='case-cta'>Design for this →</span>";
-  card.addEventListener("click", function(){
-    loadDesign(c.text, c.font, c.color, "Loaded a " + c.title.toLowerCase() + " starter ✓");
-  });
-  caseGrid.appendChild(card);
-});
-
-/* ================= STEPS (how it works) ================= */
-var stepGrid = document.getElementById("stepGrid");
-STEPS.forEach(function(s, i){
-  var card = el("div","step reveal" + (i ? " d" + Math.min(i,3) : ""));
-  card.appendChild(el("div","step-num","0" + (i+1)));
-  card.appendChild(el("h3", null, esc(s.title)));
-  card.appendChild(el("p", null, esc(s.copy)));
-  stepGrid.appendChild(card);
-});
-
 /* ================= GALLERY ================= */
 var galleryGrid = document.getElementById("galleryGrid");
 var galleryFilters = document.getElementById("galleryFilters");
@@ -1513,36 +1179,6 @@ CATS.forEach(function(c, i){
   galleryFilters.appendChild(b);
 });
 
-/* ================= FAQ ================= */
-var faqList = document.getElementById("faqList");
-FAQS.forEach(function(f){
-  var item = el("div","faq-item reveal");
-  var q = el("button","faq-q");
-  q.type = "button";
-  q.innerHTML = "<span>" + esc(f.q) + "</span><span class='plus'>+</span>";
-  var a = el("div","faq-a");
-  a.appendChild(el("p", null, esc(f.a)));
-  q.addEventListener("click", function(){
-    var open = item.classList.toggle("open");
-    a.style.maxHeight = open ? a.scrollHeight + "px" : "0";
-  });
-  item.appendChild(q);
-  item.appendChild(a);
-  faqList.appendChild(item);
-});
-
-/* ================= FORMS ================= */
-document.getElementById("leadForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  this.style.display = "none";
-  document.getElementById("leadSuccess").style.display = "block";
-});
-document.getElementById("signupForm").addEventListener("submit", function(e){
-  e.preventDefault();
-  var inner = document.querySelector(".signup-inner");
-  inner.innerHTML = "<h2>You're on the list.</h2><p>Watch for new designs and launch offers — no inbox clutter, promise.</p>";
-});
-
 /* ================= NAV / SCROLL ================= */
 var header = document.getElementById("header");
 var progress = document.getElementById("progress");
@@ -1571,7 +1207,7 @@ var spy = new IntersectionObserver(function(entries){
     }
   });
 }, {rootMargin:"-45% 0px -50% 0px"});
-["builder","gallery","how","faq","contact"].forEach(function(id){
+["builder","gallery"].forEach(function(id){
   var s = document.getElementById(id);
   if(s) spy.observe(s);
 });
@@ -1583,100 +1219,6 @@ var revealObs = new IntersectionObserver(function(entries){
   });
 }, {threshold:.12});
 document.querySelectorAll(".reveal, .step").forEach(function(n){ revealObs.observe(n); });
-
-/* ================= CHATBOT ================= */
-var chatPanel = document.getElementById("chatPanel");
-var chatBody = document.getElementById("chatBody");
-var chatInput = document.getElementById("chatInput");
-var chatSugs = document.getElementById("chatSugs");
-var chatSeeded = false;
-
-function chatToggle(open){
-  chatPanel.classList.toggle("open", open);
-  if(open){
-    if(!chatSeeded){
-      chatSeeded = true;
-      botSay("Hi! I'm the Pillar Assistant. Ask me about size, previews, ordering — or tap a question below.");
-      CHAT_SUGS.forEach(function(s){
-        var b = el("button","chat-sug", esc(s));
-        b.type = "button";
-        b.addEventListener("click", function(){ userAsk(s); });
-        chatSugs.appendChild(b);
-      });
-    }
-    chatInput.focus();
-  }
-}
-document.getElementById("chatBubble").addEventListener("click", function(){ chatToggle(!chatPanel.classList.contains("open")); });
-document.getElementById("chatClose").addEventListener("click", function(){ chatToggle(false); });
-document.getElementById("barChat").addEventListener("click", function(){ chatToggle(true); });
-document.addEventListener("keydown", function(e){ if(e.key==="Escape") chatToggle(false); });
-
-function addMsg(cls, text){
-  var m = el("div","msg " + cls, esc(text));
-  chatBody.appendChild(m);
-  chatBody.scrollTop = chatBody.scrollHeight;
-  return m;
-}
-function botSay(t){ addMsg("bot", t); }
-function userAsk(t){
-  addMsg("user", t);
-  if(reducedMotion){
-    botSay(fallbackReply(t));
-    return;
-  }
-  var typing = el("div","msg bot typing","<i></i><i></i><i></i>");
-  chatBody.appendChild(typing);
-  chatBody.scrollTop = chatBody.scrollHeight;
-  setTimeout(function(){
-    typing.remove();
-    botSay(fallbackReply(t));
-  }, 700);
-}
-function sendChat(){
-  var v = chatInput.value.trim();
-  if(!v) return;
-  chatInput.value = "";
-  userAsk(v);
-}
-document.getElementById("chatSend").addEventListener("click", sendChat);
-chatInput.addEventListener("keydown", function(e){ if(e.key==="Enter") sendChat(); });
-
-/* Keyword fallback responder — honest answers only, no unverified specs */
-function fallbackReply(text){
-  var t = text.toLowerCase();
-  if(/(size|big|tall|large|dimension|height|fit on)/.test(t))
-    return "It's approximately one foot tall — made for desks, shelves, tables, and counters. Exact dimensions will be published once the production model is finalized.";
-  if(/(preview|proof|see it|before|approve|mockup)/.test(t))
-    return "Yes — you get a free design preview before production begins, and nothing is made until you approve it. Try the live design studio in the Design Yours section!";
-  if(/(face|side|both|around|back of)/.test(t))
-    return "The signature look repeats your message on the front and side panels. You can choose front only, front + side, or request an all-panels proof in the design studio.";
-  if(/(no text|blank|plain|just.*glow|lamp only)/.test(t))
-    return "Yes — leave the message blank and it works as a pure color-glow lamp. There's an example in the gallery.";
-  if(/(order|buy|purchase|how do i|get one|quote|start)/.test(t))
-    return "Use the secure order page to customize the pillar, upload artwork, and pay through Stripe. The server recalculates the final total before checkout.";
-  if(/(price|cost|much|expensive|\$)/.test(t))
-    return "Pricing depends on your design, so we include a quote with your free design preview. Build yours in the studio and send it over — no payment needed to see it.";
-  if(/(font|style|script|cursive|writing)/.test(t))
-    return "There are eight font styles in the design studio, from bold and modern to retro script. Pick one and your message updates live in the preview.";
-  if(/(text|character|letter|word|phrase|how much text|limit|line)/.test(t))
-    return "Short names, dates, and phrases look best because the text runs vertically on the pillar. The live preview shows the fit, and exact limits are confirmed with your design proof.";
-  if(/(power|battery|plug|usb|charge|cord|electric)/.test(t))
-    return "Power details for the production model are being finalized and will be published before launch. Confirmed specs come with your design preview.";
-  if(/(color|rgb|change|glow|light mode)/.test(t))
-    return "You can pick from ten glow colors in the design studio — the whole panel lights up in your color. Final options are confirmed with your design preview.";
-  if(/(ship|deliver|arrive|production|long|when|time)/.test(t))
-    return "Every pillar is made to order. We quote a realistic production window plus shipping time with your preview — before you commit to anything.";
-  if(/(return|refund|damage|broken|exchange)/.test(t))
-    return "Damaged or defective orders are covered. Because each pillar is custom, the preview-approval step exists to get your design right before it's made.";
-  if(/(logo|image|upload|artwork|picture|business)/.test(t))
-    return "Logo and artwork support is planned — send your file with an inquiry and we'll confirm what's possible with your free design preview.";
-  if(/(gift|present|birthday|wedding|anniversary)/.test(t))
-    return "It makes a gift nobody else can copy — a name, a date, a mantra, an inside joke. Check the Gallery for ideas, then click one to load it in the studio.";
-  if(/(human|person|someone|talk|agent|help|contact)/.test(t))
-    return "Use the contact form at the bottom of the page and a real person will get back to you. Include your idea and we'll send a free preview too.";
-  return "I can help with size, previews, fonts, colors, panels, ordering, and shipping. What would you like to know? For anything else, the contact form reaches a real person.";
-}
 
 })();
 </script>

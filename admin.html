@@ -8,14 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/ordering.css">
+<link rel="stylesheet" href="ordering.css">
 </head>
 <body>
 <header class="topbar">
   <nav class="nav">
-    <a class="brand" href="/index.html"><i></i>LED MESSAGE PILLAR</a>
+    <a class="brand" href="index.html" aria-label="Vibe Lighting home"><img src="./images/vibe-lighting-logo.png" alt="Vibe Lighting"></a>
     <div class="nav-links">
-      <a href="/order.html">Order Page</a>
+      <a href="order.html">Order Page</a>
       <button class="btn ghost hidden" id="signOutBtn" type="button">Sign Out</button>
     </div>
   </nav>
@@ -84,7 +84,8 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/js/supabase-config.js"></script>
-<script src="/js/admin.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/image-fallbacks.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>

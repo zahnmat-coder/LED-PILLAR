@@ -33,6 +33,9 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--body);background:var(--night);color:var(--cloud);line-height:1.6;overflow-x:hidden}
 img{max-width:100%;display:block}
+img.image-missing{display:none}
+.image-fallback{display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted-light);font-family:var(--display);font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(135deg,#141722,#0d1018);border:1px solid var(--border-dark)}
+.logo .image-fallback{min-width:178px;max-width:48vw;height:34px;font-size:.74rem;color:#fff;border-radius:4px;background:#0b0c12}
 a{color:inherit}
 h1,h2,h3,.btn{font-family:var(--display)}
 h2{font-size:clamp(1.8rem,4.5vw,3rem);font-weight:700;line-height:1.12;letter-spacing:-.01em}
@@ -508,6 +511,7 @@ header.solid nav{padding:14px 24px}
 .g-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -18px rgba(18,20,28,.28)}
 .g-stage{height:230px;overflow:hidden;position:relative}
 .g-stage img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .5s ease}
+.g-stage .image-fallback{width:100%;height:100%;font-size:.78rem}
 .g-card:hover .g-stage img{transform:scale(1.04)}
 .g-try{position:absolute;top:12px;right:12px;background:rgba(9,10,15,.7);backdrop-filter:blur(6px);border:1px solid var(--border-dark);border-radius:20px;padding:6px 13px;font-family:var(--display);font-weight:600;font-size:.72rem;color:#fff;letter-spacing:.05em;opacity:0;transform:translateY(-4px);transition:opacity .25s ease,transform .25s ease}
 .g-card:hover .g-try{opacity:1;transform:none}
@@ -1160,6 +1164,7 @@ GALLERY.forEach(function(g){
     "<div class='g-try'>Try This →</div></div>" +
     "<div class='g-meta'><h3>" + esc(g.title) + "</h3><p>" + esc(g.cap) + "</p>" +
     "<span class='g-tag'>" + esc(catLabel) + "</span></div>";
+  protectImage(card.querySelector("img"), "Image unavailable");
   card.addEventListener("click", function(){
     loadDesign(g.text, g.font, g.color, (g.text ? "“" + g.text + "”" : "Pure glow") + " loaded into the studio ✓");
   });
@@ -1219,6 +1224,19 @@ var revealObs = new IntersectionObserver(function(entries){
   });
 }, {threshold:.12});
 document.querySelectorAll(".reveal, .step").forEach(function(n){ revealObs.observe(n); });
+
+function protectImage(img, label){
+  if(!img) return;
+  img.addEventListener("error", function(){
+    if(img.classList.contains("image-missing")) return;
+    var fallback = el("span", "image-fallback", label || img.alt || "Image unavailable");
+    fallback.setAttribute("role", "img");
+    fallback.setAttribute("aria-label", img.alt || label || "Image unavailable");
+    img.classList.add("image-missing");
+    img.insertAdjacentElement("afterend", fallback);
+  });
+}
+document.querySelectorAll("img").forEach(function(img){ protectImage(img, img.alt || "Image unavailable"); });
 
 })();
 </script>
